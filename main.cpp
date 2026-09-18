@@ -269,10 +269,8 @@ void get_legal_moves () {
                 // check bounds
                 if ((0 <= from_rank + 1 && from_rank + 1 < board_dimensions) && (0 <= from_file - 1 && from_file - 1 < board_dimensions)) {
                     //check west take [ - ]
-                    if (board[from_rank + 1][from_file - 1] == "W") {
-                        string enemy_piece {};
-                        enemy_piece.push_back(piece_position.at(2));
-                        enemy_piece.push_back(piece_position.at(3));
+                    if (board[from_rank + 1][from_file - 1].at(0) == 'W') {
+                        string enemy_piece = board[from_rank + 1][from_file - 1];
                         string move_data = to_string(from_rank) + to_string(from_file) + piece + to_string(from_rank + 1) + to_string(from_file - 1) + enemy_piece;
                         cout << move_data << " ";
                         black_legal_moves.push_back(move_data);
@@ -282,10 +280,8 @@ void get_legal_moves () {
                 // check bounds
                 if ((0 <= from_rank + 1 && from_rank + 1 < board_dimensions) && (0 <= from_file + 1 && from_file + 1 < board_dimensions)) {
                     //check east take [ + ]
-                    if (board[from_rank + 1][from_file + 1] == "W") {
-                        string enemy_piece {};
-                        enemy_piece.push_back(piece_position.at(2));
-                        enemy_piece.push_back(piece_position.at(3));
+                    if (board[from_rank + 1][from_file + 1].at(0) == 'W') {
+                        string enemy_piece = board[from_rank + 1][from_file + 1];
                         string move_data = to_string(from_rank) + to_string(from_file) + piece + to_string(from_rank + 1) + to_string(from_file + 1) + enemy_piece;
                         cout << move_data << " ";
                         black_legal_moves.push_back(move_data);
@@ -342,9 +338,7 @@ void get_legal_moves () {
                         }
                         // check for enemy piece
                         else if (board[i][from_file].at(0) == 'W') {
-                            string enemy_piece {};
-                            enemy_piece.push_back(piece_position.at(2));
-                            enemy_piece.push_back(piece_position.at(3));
+                            string enemy_piece = board[i][from_file];
                             string move_data = to_string(from_rank) + to_string(from_file) + piece + to_string(i) + to_string(from_file) + enemy_piece;
                             cout << move_data << " ";
                             black_legal_moves.push_back(move_data);
@@ -372,9 +366,7 @@ void get_legal_moves () {
                         }
                         // check for enemy piece
                         else if (board[i][from_file].at(0) == 'W') {
-                            string enemy_piece {};
-                            enemy_piece.push_back(piece_position.at(2));
-                            enemy_piece.push_back(piece_position.at(3));
+                            string enemy_piece = board[i][from_file];
                             string move_data = to_string(from_rank) + to_string(from_file) + piece + to_string(i) + to_string(from_file) + enemy_piece;
                             cout << move_data << " ";
                             black_legal_moves.push_back(move_data);
@@ -402,9 +394,7 @@ void get_legal_moves () {
                         }
                         // check for enemy piece
                         else if (board[from_rank][i].at(0) == 'W') {
-                            string enemy_piece {};
-                            enemy_piece.push_back(piece_position.at(2));
-                            enemy_piece.push_back(piece_position.at(3));
+                            string enemy_piece = board[from_rank][i];
                             string move_data = to_string(from_rank) + to_string(from_file) + piece + to_string(from_rank) + to_string(i) + enemy_piece;
                             cout << move_data << " ";
                             black_legal_moves.push_back(move_data);
@@ -432,9 +422,7 @@ void get_legal_moves () {
                         }
                         // check for enemy piece
                         else if (board[from_rank][i].at(0) == 'W') {
-                            string enemy_piece {};
-                            enemy_piece.push_back(piece_position.at(2));
-                            enemy_piece.push_back(piece_position.at(3));
+                            string enemy_piece = board[from_rank][i];
                             string move_data = to_string(from_rank) + to_string(from_file) + piece + to_string(from_rank) + to_string(i) + enemy_piece;
                             cout << move_data << " ";
                             black_legal_moves.push_back(move_data);
@@ -470,9 +458,7 @@ void get_legal_moves () {
                         cout << move_data << " ";
                         black_legal_moves.push_back(move_data);
                     } else if (board[from_rank - 2][from_file].at(0) == 'W') {
-                        string enemy_piece {};
-                        enemy_piece.push_back(piece_position.at(2));
-                        enemy_piece.push_back(piece_position.at(3));
+                        string enemy_piece = board[from_rank - 2][from_file];
                         string move_data = to_string(from_rank) + to_string(from_file) + piece + to_string(from_rank - 2) + to_string(from_file) + enemy_piece;
                         cout << move_data << " ";
                         black_legal_moves.push_back(move_data);
@@ -487,9 +473,7 @@ void get_legal_moves () {
                         cout << move_data << " ";
                         black_legal_moves.push_back(move_data);
                     } else if (board[from_rank + 2][from_file].at(0) == 'W') {
-                        string enemy_piece {};
-                        enemy_piece.push_back(piece_position.at(2));
-                        enemy_piece.push_back(piece_position.at(3));
+                        string enemy_piece = board[from_rank + 2][from_file];
                         string move_data = to_string(from_rank) + to_string(from_file) + piece + to_string(from_rank + 2) + to_string(from_file) + enemy_piece;
                         cout << move_data << " ";
                         black_legal_moves.push_back(move_data);
@@ -504,9 +488,7 @@ void get_legal_moves () {
                         cout << move_data << " ";
                         black_legal_moves.push_back(move_data);
                     } else if (board[from_rank][from_file + 2].at(0) == 'W') {
-                        string enemy_piece {};
-                        enemy_piece.push_back(piece_position.at(2));
-                        enemy_piece.push_back(piece_position.at(3));
+                        string enemy_piece = board[from_rank][from_file + 2];
                         string move_data = to_string(from_rank) + to_string(from_file) + piece + to_string(from_rank) + to_string(from_file + 2) + enemy_piece;
                         cout << move_data << " ";
                         black_legal_moves.push_back(move_data);
@@ -521,15 +503,14 @@ void get_legal_moves () {
                         cout << move_data << " ";
                         black_legal_moves.push_back(move_data);
                     } else if (board[from_rank][from_file - 2].at(0) == 'W') {
-                        string enemy_piece {};
-                        enemy_piece.push_back(piece_position.at(2));
-                        enemy_piece.push_back(piece_position.at(3));
+                        string enemy_piece = board[from_rank][from_file - 2];
                         string move_data = to_string(from_rank) + to_string(from_file) + piece + to_string(from_rank) + to_string(from_file - 2) + enemy_piece;
                         cout << move_data << " ";
                         black_legal_moves.push_back(move_data);
                     }
                 }
             }   break;
+
             case 'N': {
                 // Nabu [N] (Seer)  - Can move one square at a time along a diagonal.
 
@@ -551,9 +532,7 @@ void get_legal_moves () {
                         cout << move_data << " ";
                         black_legal_moves.push_back(move_data);
                     } else if (board[from_rank - 1][from_file + 1].at(0) == 'W') {
-                        string enemy_piece {};
-                        enemy_piece.push_back(piece_position.at(2));
-                        enemy_piece.push_back(piece_position.at(3));
+                        string enemy_piece = board[from_rank - 1][from_file + 1];
                         string move_data = to_string(from_rank) + to_string(from_file) + piece + to_string(from_rank - 1) + to_string(from_file + 1) + enemy_piece;
                         cout << move_data << " ";
                         black_legal_moves.push_back(move_data);
@@ -569,9 +548,7 @@ void get_legal_moves () {
                         cout << move_data << " ";
                         black_legal_moves.push_back(move_data);
                     } else if (board[from_rank + 1][from_file + 1].at(0) == 'W') {
-                        string enemy_piece {};
-                        enemy_piece.push_back(piece_position.at(2));
-                        enemy_piece.push_back(piece_position.at(3));
+                        string enemy_piece = board[from_rank + 1][from_file + 1];
                         string move_data = to_string(from_rank) + to_string(from_file) + piece + to_string(from_rank + 1) + to_string(from_file + 1) + enemy_piece;
                         cout << move_data << " ";
                         black_legal_moves.push_back(move_data);
@@ -586,9 +563,7 @@ void get_legal_moves () {
                         cout << move_data << " ";
                         black_legal_moves.push_back(move_data);
                     } else if (board[from_rank + 1][from_file - 1].at(0) == 'W') {
-                        string enemy_piece {};
-                        enemy_piece.push_back(piece_position.at(2));
-                        enemy_piece.push_back(piece_position.at(3));
+                        string enemy_piece = board[from_rank + 1][from_file - 1];
                         string move_data = to_string(from_rank) + to_string(from_file) + piece + to_string(from_rank + 1) + to_string(from_file - 1) + enemy_piece;
                         cout << move_data << " ";
                         black_legal_moves.push_back(move_data);
@@ -603,9 +578,7 @@ void get_legal_moves () {
                         cout << move_data << " ";
                         black_legal_moves.push_back(move_data);
                     } else if (board[from_rank - 1][from_file - 1].at(0) == 'W') {
-                        string enemy_piece {};
-                        enemy_piece.push_back(piece_position.at(2));
-                        enemy_piece.push_back(piece_position.at(3));
+                        string enemy_piece = board[from_rank - 1][from_file - 1];
                         string move_data = to_string(from_rank) + to_string(from_file) + piece + to_string(from_rank - 1) + to_string(from_file - 1) + enemy_piece;
                         cout << move_data << " ";
                         black_legal_moves.push_back(move_data);
@@ -635,9 +608,7 @@ void get_legal_moves () {
                         cout << move_data << " ";
                         black_legal_moves.push_back(move_data);
                     } else if (board[from_rank - 1][from_file].at(0) == 'W') {
-                        string enemy_piece {};
-                        enemy_piece.push_back(piece_position.at(2));
-                        enemy_piece.push_back(piece_position.at(3));
+                        string enemy_piece = board[from_rank - 1][from_file];
                         string move_data = to_string(from_rank) + to_string(from_file) + piece + to_string(from_rank - 1) + to_string(from_file) + enemy_piece;
                         cout << move_data << " ";
                         black_legal_moves.push_back(move_data);
@@ -652,9 +623,7 @@ void get_legal_moves () {
                         // cout << move_data << " ";
                         black_legal_moves.push_back(move_data);
                     } else if (board[from_rank + 1][from_file].at(0) == 'W') {
-                        string enemy_piece {};
-                        enemy_piece.push_back(piece_position.at(2));
-                        enemy_piece.push_back(piece_position.at(3));
+                        string enemy_piece = board[from_rank + 1][from_file];
                         string move_data = to_string(from_rank) + to_string(from_file) + piece + to_string(from_rank + 1) + to_string(from_file) + enemy_piece;
                         // cout << move_data << " ";
                         black_legal_moves.push_back(move_data);
@@ -669,9 +638,7 @@ void get_legal_moves () {
                         cout << move_data << " ";
                         black_legal_moves.push_back(move_data);
                     } else if (board[from_rank][from_file + 1].at(0) == 'W') {
-                        string enemy_piece {};
-                        enemy_piece.push_back(piece_position.at(2));
-                        enemy_piece.push_back(piece_position.at(3));
+                        string enemy_piece = board[from_rank][from_file + 1];
                         string move_data = to_string(from_rank) + to_string(from_file) + piece + to_string(from_rank) + to_string(from_file + 1) + enemy_piece;
                         cout << move_data << " ";
                         black_legal_moves.push_back(move_data);
@@ -686,9 +653,7 @@ void get_legal_moves () {
                         cout << move_data << " ";
                         black_legal_moves.push_back(move_data);
                     } else if (board[from_rank][from_file - 1].at(0) == 'W') {
-                        string enemy_piece {};
-                        enemy_piece.push_back(piece_position.at(2));
-                        enemy_piece.push_back(piece_position.at(3));
+                        string enemy_piece = board[from_rank][from_file - 1];
                         string move_data = to_string(from_rank) + to_string(from_file) + piece + to_string(from_rank) + to_string(from_file - 1) + enemy_piece;
                         cout << move_data << " ";
                         black_legal_moves.push_back(move_data);
@@ -717,9 +682,7 @@ void get_legal_moves () {
                         cout << move_data << " ";
                         black_legal_moves.push_back(move_data);
                     } else if (board[from_rank - 1][from_file].at(0) == 'W') {
-                        string enemy_piece {};
-                        enemy_piece.push_back(piece_position.at(2));
-                        enemy_piece.push_back(piece_position.at(3));
+                        string enemy_piece = board[from_rank - 1][from_file];
                         string move_data = to_string(from_rank) + to_string(from_file) + piece + to_string(from_rank - 1) + to_string(from_file) + enemy_piece;
                         cout << move_data << " ";
                         black_legal_moves.push_back(move_data);
@@ -734,9 +697,7 @@ void get_legal_moves () {
                         cout << move_data << " ";
                         black_legal_moves.push_back(move_data);
                     } else if (board[from_rank + 1][from_file].at(0) == 'W') {
-                        string enemy_piece {};
-                        enemy_piece.push_back(piece_position.at(2));
-                        enemy_piece.push_back(piece_position.at(3));
+                        string enemy_piece = board[from_rank + 1][from_file];
                         string move_data = to_string(from_rank) + to_string(from_file) + piece + to_string(from_rank + 1) + to_string(from_file) + enemy_piece;
                         cout << move_data << " ";
                         black_legal_moves.push_back(move_data);
@@ -751,9 +712,7 @@ void get_legal_moves () {
                         cout << move_data << " ";
                         black_legal_moves.push_back(move_data);
                     } else if (board[from_rank][from_file + 1].at(0) == 'W') {
-                        string enemy_piece {};
-                        enemy_piece.push_back(piece_position.at(2));
-                        enemy_piece.push_back(piece_position.at(3));
+                        string enemy_piece = board[from_rank][from_file + 1];
                         string move_data = to_string(from_rank) + to_string(from_file) + piece + to_string(from_rank) + to_string(from_file + 1) + enemy_piece;
                         cout << move_data << " ";
                         black_legal_moves.push_back(move_data);
@@ -768,9 +727,7 @@ void get_legal_moves () {
                         cout << move_data << " ";
                         black_legal_moves.push_back(move_data);
                     } else if (board[from_rank][from_file - 1].at(0) == 'W') {
-                        string enemy_piece {};
-                        enemy_piece.push_back(piece_position.at(2));
-                        enemy_piece.push_back(piece_position.at(3));
+                        string enemy_piece = board[from_rank][from_file - 1];
                         string move_data = to_string(from_rank) + to_string(from_file) + piece + to_string(from_rank) + to_string(from_file - 1) + enemy_piece;
                         cout << move_data << " ";
                         black_legal_moves.push_back(move_data);
@@ -785,9 +742,7 @@ void get_legal_moves () {
                         cout << move_data << " ";
                         black_legal_moves.push_back(move_data);
                     } else if (board[from_rank - 1][from_file + 1].at(0) == 'W') {
-                        string enemy_piece {};
-                        enemy_piece.push_back(piece_position.at(2));
-                        enemy_piece.push_back(piece_position.at(3));
+                        string enemy_piece = board[from_rank - 1][from_file + 1];
                         string move_data = to_string(from_rank) + to_string(from_file) + piece + to_string(from_rank - 1) + to_string(from_file + 1) + enemy_piece;
                         cout << move_data << " ";
                         black_legal_moves.push_back(move_data);
@@ -802,9 +757,7 @@ void get_legal_moves () {
                         cout << move_data << " ";
                         black_legal_moves.push_back(move_data);
                     } else if (board[from_rank + 1][from_file + 1].at(0) == 'W') {
-                        string enemy_piece {};
-                        enemy_piece.push_back(piece_position.at(2));
-                        enemy_piece.push_back(piece_position.at(3));
+                        string enemy_piece = board[from_rank + 1][from_file + 1];
                         string move_data = to_string(from_rank) + to_string(from_file) + piece + to_string(from_rank + 1) + to_string(from_file + 1) + enemy_piece;
                         cout << move_data << " ";
                         black_legal_moves.push_back(move_data);
@@ -819,9 +772,7 @@ void get_legal_moves () {
                         cout << move_data << " ";
                         black_legal_moves.push_back(move_data);
                     } else if (board[from_rank + 1][from_file - 1].at(0) == 'W') {
-                        string enemy_piece {};
-                        enemy_piece.push_back(piece_position.at(2));
-                        enemy_piece.push_back(piece_position.at(3));
+                        string enemy_piece = board[from_rank + 1][from_file - 1];
                         string move_data = to_string(from_rank) + to_string(from_file) + piece + to_string(from_rank + 1) + to_string(from_file - 1) + enemy_piece;
                         cout << move_data << " ";
                         black_legal_moves.push_back(move_data);
@@ -836,9 +787,7 @@ void get_legal_moves () {
                         cout << move_data << " ";
                         black_legal_moves.push_back(move_data);
                     } else if (board[from_rank - 1][from_file - 1].at(0) == 'W') {
-                        string enemy_piece {};
-                        enemy_piece.push_back(piece_position.at(2));
-                        enemy_piece.push_back(piece_position.at(3));
+                        string enemy_piece = board[from_rank - 1][from_file - 1];
                         string move_data = to_string(from_rank) + to_string(from_file) + piece + to_string(from_rank - 1) + to_string(from_file - 1) + enemy_piece;
                         cout << move_data << " ";
                         black_legal_moves.push_back(move_data);
@@ -893,10 +842,8 @@ void get_legal_moves () {
                 // check bounds
                 if ((0 <= from_rank - 1 && from_rank - 1 < board_dimensions) && (0 <= from_file - 1 && from_file - 1 < board_dimensions)) {
                     //check west take [ - ]
-                    if (board[from_rank - 1][from_file - 1] == "B") {
-                        string enemy_piece {};
-                        enemy_piece.push_back(piece_position.at(2));
-                        enemy_piece.push_back(piece_position.at(3));
+                    if (board[from_rank - 1][from_file - 1].at(0) == 'B') {
+                        string enemy_piece = board[from_rank - 1][from_file - 1];
                         string move_data = to_string(from_rank) + to_string(from_file) + piece + to_string(from_rank - 1) + to_string(from_file - 1) + enemy_piece;
                         cout << move_data << " ";
                         white_legal_moves.push_back(move_data);
@@ -906,10 +853,8 @@ void get_legal_moves () {
                 // check bounds
                 if ((0 <= from_rank - 1 && from_rank - 1 < board_dimensions) && (0 <= from_file + 1 && from_file + 1 < board_dimensions)) {
                     //check east take [ + ]
-                    if (board[from_rank - 1][from_file + 1] == "B") {
-                        string enemy_piece {};
-                        enemy_piece.push_back(piece_position.at(2));
-                        enemy_piece.push_back(piece_position.at(3));
+                    if (board[from_rank - 1][from_file + 1].at(0) == 'B') {
+                        string enemy_piece = board[from_rank - 1][from_file + 1];
                         string move_data = to_string(from_rank) + to_string(from_file) + piece + to_string(from_rank - 1) + to_string(from_file + 1) + enemy_piece;
                         cout << move_data << " ";
                         white_legal_moves.push_back(move_data);
@@ -966,9 +911,7 @@ void get_legal_moves () {
                         }
                         // check for enemy piece
                         else if (board[i][from_file].at(0) == 'B') {
-                            string enemy_piece {};
-                            enemy_piece.push_back(piece_position.at(2));
-                            enemy_piece.push_back(piece_position.at(3));
+                            string enemy_piece = board[i][from_file];
                             string move_data = to_string(from_rank) + to_string(from_file) + piece + to_string(i) + to_string(from_file) + enemy_piece;
                             cout << move_data << " ";
                             white_legal_moves.push_back(move_data);
@@ -996,9 +939,7 @@ void get_legal_moves () {
                         }
                         // check for enemy piece
                         else if (board[i][from_file].at(0) == 'B') {
-                            string enemy_piece {};
-                            enemy_piece.push_back(piece_position.at(2));
-                            enemy_piece.push_back(piece_position.at(3));
+                            string enemy_piece = board[i][from_file];
                             string move_data = to_string(from_rank) + to_string(from_file) + piece + to_string(i) + to_string(from_file) + enemy_piece;
                             cout << move_data << " ";
                             white_legal_moves.push_back(move_data);
@@ -1026,9 +967,7 @@ void get_legal_moves () {
                         }
                         // check for enemy piece
                         else if (board[from_rank][i].at(0) == 'B') {
-                            string enemy_piece {};
-                            enemy_piece.push_back(piece_position.at(2));
-                            enemy_piece.push_back(piece_position.at(3));
+                            string enemy_piece = board[from_rank][i];
                             string move_data = to_string(from_rank) + to_string(from_file) + piece + to_string(from_rank) + to_string(i) + enemy_piece;
                             cout << move_data << " ";
                             white_legal_moves.push_back(move_data);
@@ -1056,9 +995,7 @@ void get_legal_moves () {
                         }
                         // check for enemy piece
                         else if (board[from_rank][i].at(0) == 'B') {
-                            string enemy_piece {};
-                            enemy_piece.push_back(piece_position.at(2));
-                            enemy_piece.push_back(piece_position.at(3));
+                            string enemy_piece = board[from_rank][i];
                             string move_data = to_string(from_rank) + to_string(from_file) + piece + to_string(from_rank) + to_string(i) + enemy_piece;
                             cout << move_data << " ";
                             white_legal_moves.push_back(move_data);
@@ -1094,9 +1031,7 @@ void get_legal_moves () {
                         cout << move_data << " ";
                         white_legal_moves.push_back(move_data);
                     } else if (board[from_rank - 2][from_file].at(0) == 'B') {
-                        string enemy_piece {};
-                        enemy_piece.push_back(piece_position.at(2));
-                        enemy_piece.push_back(piece_position.at(3));
+                        string enemy_piece = board[from_rank - 2][from_file];
                         string move_data = to_string(from_rank) + to_string(from_file) + piece + to_string(from_rank - 2) + to_string(from_file) + enemy_piece;
                         cout << move_data << " ";
                         white_legal_moves.push_back(move_data);
@@ -1111,9 +1046,7 @@ void get_legal_moves () {
                         cout << move_data << " ";
                         white_legal_moves.push_back(move_data);
                     } else if (board[from_rank + 2][from_file].at(0) == 'B') {
-                        string enemy_piece {};
-                        enemy_piece.push_back(piece_position.at(2));
-                        enemy_piece.push_back(piece_position.at(3));
+                        string enemy_piece = board[from_rank + 2][from_file];
                         string move_data = to_string(from_rank) + to_string(from_file) + piece + to_string(from_rank + 2) + to_string(from_file) + enemy_piece;
                         cout << move_data << " ";
                         white_legal_moves.push_back(move_data);
@@ -1128,9 +1061,7 @@ void get_legal_moves () {
                         cout << move_data << " ";
                         white_legal_moves.push_back(move_data);
                     } else if (board[from_rank][from_file + 2].at(0) == 'B') {
-                        string enemy_piece {};
-                        enemy_piece.push_back(piece_position.at(2));
-                        enemy_piece.push_back(piece_position.at(3));
+                        string enemy_piece = board[from_rank][from_file + 2];
                         string move_data = to_string(from_rank) + to_string(from_file) + piece + to_string(from_rank) + to_string(from_file + 2) + enemy_piece;
                         cout << move_data << " ";
                         white_legal_moves.push_back(move_data);
@@ -1145,15 +1076,14 @@ void get_legal_moves () {
                         cout << move_data << " ";
                         white_legal_moves.push_back(move_data);
                     } else if (board[from_rank][from_file - 2].at(0) == 'B') {
-                        string enemy_piece {};
-                        enemy_piece.push_back(piece_position.at(2));
-                        enemy_piece.push_back(piece_position.at(3));
+                        string enemy_piece = board[from_rank][from_file - 2];
                         string move_data = to_string(from_rank) + to_string(from_file) + piece + to_string(from_rank) + to_string(from_file - 2) + enemy_piece;
                         cout << move_data << " ";
                         white_legal_moves.push_back(move_data);
                     }
                 }
             }   break;
+
             case 'N': {
                 // Nabu [N] (Seer)  - Can move one square at a time along a diagonal.
 
@@ -1175,9 +1105,7 @@ void get_legal_moves () {
                         cout << move_data << " ";
                         white_legal_moves.push_back(move_data);
                     } else if (board[from_rank - 1][from_file + 1].at(0) == 'B') {
-                        string enemy_piece {};
-                        enemy_piece.push_back(piece_position.at(2));
-                        enemy_piece.push_back(piece_position.at(3));
+                        string enemy_piece = board[from_rank - 1][from_file + 1];
                         string move_data = to_string(from_rank) + to_string(from_file) + piece + to_string(from_rank - 1) + to_string(from_file + 1) + enemy_piece;
                         cout << move_data << " ";
                         white_legal_moves.push_back(move_data);
@@ -1193,9 +1121,7 @@ void get_legal_moves () {
                         cout << move_data << " ";
                         white_legal_moves.push_back(move_data);
                     } else if (board[from_rank + 1][from_file + 1].at(0) == 'B') {
-                        string enemy_piece {};
-                        enemy_piece.push_back(piece_position.at(2));
-                        enemy_piece.push_back(piece_position.at(3));
+                        string enemy_piece = board[from_rank + 1][from_file + 1];
                         string move_data = to_string(from_rank) + to_string(from_file) + piece + to_string(from_rank + 1) + to_string(from_file + 1) + enemy_piece;
                         cout << move_data << " ";
                         white_legal_moves.push_back(move_data);
@@ -1210,9 +1136,7 @@ void get_legal_moves () {
                         cout << move_data << " ";
                         white_legal_moves.push_back(move_data);
                     } else if (board[from_rank + 1][from_file - 1].at(0) == 'B') {
-                        string enemy_piece {};
-                        enemy_piece.push_back(piece_position.at(2));
-                        enemy_piece.push_back(piece_position.at(3));
+                        string enemy_piece = board[from_rank + 1][from_file - 1];
                         string move_data = to_string(from_rank) + to_string(from_file) + piece + to_string(from_rank + 1) + to_string(from_file - 1) + enemy_piece;
                         cout << move_data << " ";
                         white_legal_moves.push_back(move_data);
@@ -1227,9 +1151,7 @@ void get_legal_moves () {
                         cout << move_data << " ";
                         white_legal_moves.push_back(move_data);
                     } else if (board[from_rank - 1][from_file - 1].at(0) == 'B') {
-                        string enemy_piece {};
-                        enemy_piece.push_back(piece_position.at(2));
-                        enemy_piece.push_back(piece_position.at(3));
+                        string enemy_piece = board[from_rank - 1][from_file - 1];
                         string move_data = to_string(from_rank) + to_string(from_file) + piece + to_string(from_rank - 1) + to_string(from_file - 1) + enemy_piece;
                         cout << move_data << " ";
                         white_legal_moves.push_back(move_data);
@@ -1259,9 +1181,7 @@ void get_legal_moves () {
                         cout << move_data << " ";
                         white_legal_moves.push_back(move_data);
                     } else if (board[from_rank - 1][from_file].at(0) == 'B') {
-                        string enemy_piece {};
-                        enemy_piece.push_back(piece_position.at(2));
-                        enemy_piece.push_back(piece_position.at(3));
+                        string enemy_piece = board[from_rank - 1][from_file];
                         string move_data = to_string(from_rank) + to_string(from_file) + piece + to_string(from_rank - 1) + to_string(from_file) + enemy_piece;
                         cout << move_data << " ";
                         white_legal_moves.push_back(move_data);
@@ -1276,9 +1196,7 @@ void get_legal_moves () {
                         cout << move_data << " ";
                         white_legal_moves.push_back(move_data);
                     } else if (board[from_rank + 1][from_file].at(0) == 'B') {
-                        string enemy_piece {};
-                        enemy_piece.push_back(piece_position.at(2));
-                        enemy_piece.push_back(piece_position.at(3));
+                        string enemy_piece = board[from_rank + 1][from_file];
                         string move_data = to_string(from_rank) + to_string(from_file) + piece + to_string(from_rank + 1) + to_string(from_file) + enemy_piece;
                         cout << move_data << " ";
                         white_legal_moves.push_back(move_data);
@@ -1293,9 +1211,7 @@ void get_legal_moves () {
                         cout << move_data << " ";
                         white_legal_moves.push_back(move_data);
                     } else if (board[from_rank][from_file + 1].at(0) == 'B') {
-                        string enemy_piece {};
-                        enemy_piece.push_back(piece_position.at(2));
-                        enemy_piece.push_back(piece_position.at(3));
+                        string enemy_piece = board[from_rank][from_file + 1];
                         string move_data = to_string(from_rank) + to_string(from_file) + piece + to_string(from_rank) + to_string(from_file + 1) + enemy_piece;
                         cout << move_data << " ";
                         white_legal_moves.push_back(move_data);
@@ -1310,9 +1226,7 @@ void get_legal_moves () {
                         cout << move_data << " ";
                         white_legal_moves.push_back(move_data);
                     } else if (board[from_rank][from_file - 1].at(0) == 'B') {
-                        string enemy_piece {};
-                        enemy_piece.push_back(piece_position.at(2));
-                        enemy_piece.push_back(piece_position.at(3));
+                        string enemy_piece = board[from_rank][from_file - 1];
                         string move_data = to_string(from_rank) + to_string(from_file) + piece + to_string(from_rank) + to_string(from_file - 1) + enemy_piece;
                         cout << move_data << " ";
                         white_legal_moves.push_back(move_data);
@@ -1341,9 +1255,7 @@ void get_legal_moves () {
                         cout << move_data << " ";
                         white_legal_moves.push_back(move_data);
                     } else if (board[from_rank - 1][from_file].at(0) == 'B') {
-                        string enemy_piece {};
-                        enemy_piece.push_back(piece_position.at(2));
-                        enemy_piece.push_back(piece_position.at(3));
+                        string enemy_piece = board[from_rank - 1][from_file];
                         string move_data = to_string(from_rank) + to_string(from_file) + piece + to_string(from_rank - 1) + to_string(from_file) + enemy_piece;
                         cout << move_data << " ";
                         white_legal_moves.push_back(move_data);
@@ -1358,9 +1270,7 @@ void get_legal_moves () {
                         cout << move_data << " ";
                         white_legal_moves.push_back(move_data);
                     } else if (board[from_rank + 1][from_file].at(0) == 'B') {
-                        string enemy_piece {};
-                        enemy_piece.push_back(piece_position.at(2));
-                        enemy_piece.push_back(piece_position.at(3));
+                        string enemy_piece = board[from_rank + 1][from_file];
                         string move_data = to_string(from_rank) + to_string(from_file) + piece + to_string(from_rank + 1) + to_string(from_file) + enemy_piece;
                         cout << move_data << " ";
                         white_legal_moves.push_back(move_data);
@@ -1375,9 +1285,7 @@ void get_legal_moves () {
                         cout << move_data << " ";
                         white_legal_moves.push_back(move_data);
                     } else if (board[from_rank][from_file + 1].at(0) == 'B') {
-                        string enemy_piece {};
-                        enemy_piece.push_back(piece_position.at(2));
-                        enemy_piece.push_back(piece_position.at(3));
+                        string enemy_piece = board[from_rank][from_file + 1];
                         string move_data = to_string(from_rank) + to_string(from_file) + piece + to_string(from_rank) + to_string(from_file + 1) + enemy_piece;
                         cout << move_data << " ";
                         white_legal_moves.push_back(move_data);
@@ -1392,9 +1300,7 @@ void get_legal_moves () {
                         cout << move_data << " ";
                         white_legal_moves.push_back(move_data);
                     } else if (board[from_rank][from_file - 1].at(0) == 'B') {
-                        string enemy_piece {};
-                        enemy_piece.push_back(piece_position.at(2));
-                        enemy_piece.push_back(piece_position.at(3));
+                        string enemy_piece = board[from_rank][from_file - 1];
                         string move_data = to_string(from_rank) + to_string(from_file) + piece + to_string(from_rank) + to_string(from_file - 1) + enemy_piece;
                         cout << move_data << " ";
                         white_legal_moves.push_back(move_data);
@@ -1409,9 +1315,7 @@ void get_legal_moves () {
                         cout << move_data << " ";
                         white_legal_moves.push_back(move_data);
                     } else if (board[from_rank - 1][from_file + 1].at(0) == 'B') {
-                        string enemy_piece {};
-                        enemy_piece.push_back(piece_position.at(2));
-                        enemy_piece.push_back(piece_position.at(3));
+                        string enemy_piece = board[from_rank - 1][from_file + 1];
                         string move_data = to_string(from_rank) + to_string(from_file) + piece + to_string(from_rank - 1) + to_string(from_file + 1) + enemy_piece;
                         cout << move_data << " ";
                         white_legal_moves.push_back(move_data);
@@ -1426,9 +1330,7 @@ void get_legal_moves () {
                         cout << move_data << " ";
                         white_legal_moves.push_back(move_data);
                     } else if (board[from_rank + 1][from_file + 1].at(0) == 'B') {
-                        string enemy_piece {};
-                        enemy_piece.push_back(piece_position.at(2));
-                        enemy_piece.push_back(piece_position.at(3));
+                        string enemy_piece = board[from_rank + 1][from_file + 1];
                         string move_data = to_string(from_rank) + to_string(from_file) + piece + to_string(from_rank + 1) + to_string(from_file + 1) + enemy_piece;
                         cout << move_data << " ";
                         white_legal_moves.push_back(move_data);
@@ -1443,9 +1345,7 @@ void get_legal_moves () {
                         cout << move_data << " ";
                         white_legal_moves.push_back(move_data);
                     } else if (board[from_rank + 1][from_file - 1].at(0) == 'B') {
-                        string enemy_piece {};
-                        enemy_piece.push_back(piece_position.at(2));
-                        enemy_piece.push_back(piece_position.at(3));
+                        string enemy_piece = board[from_rank + 1][from_file - 1];
                         string move_data = to_string(from_rank) + to_string(from_file) + piece + to_string(from_rank + 1) + to_string(from_file - 1) + enemy_piece;
                         cout << move_data << " ";
                         white_legal_moves.push_back(move_data);
@@ -1460,9 +1360,7 @@ void get_legal_moves () {
                         cout << move_data << " ";
                         white_legal_moves.push_back(move_data);
                     } else if (board[from_rank - 1][from_file - 1].at(0) == 'B') {
-                        string enemy_piece {};
-                        enemy_piece.push_back(piece_position.at(2));
-                        enemy_piece.push_back(piece_position.at(3));
+                        string enemy_piece = board[from_rank - 1][from_file - 1];
                         string move_data = to_string(from_rank) + to_string(from_file) + piece + to_string(from_rank - 1) + to_string(from_file - 1) + enemy_piece;
                         cout << move_data << " ";
                         white_legal_moves.push_back(move_data);
@@ -1647,6 +1545,7 @@ int main() {
                     // cout << move_data << endl;
                     execute_move(move_data);
                     turn_number++;
+                    // this_thread::sleep_until(chrono::system_clock::now() + chrono::seconds(5));
                     system("cls");
                     display_board();
                 }   while (game_over == false);
