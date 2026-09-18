@@ -39,8 +39,8 @@ char choose_player ();
 void display_board ();
 void display_turn (char player);
 void get_legal_moves ();
-bool check_check ();
-void request_move ();
+string request_move (char player);
+void execute_move (string got_legal_move);
 
 // Globals
 const int board_dimensions {8};
@@ -49,7 +49,9 @@ vector<string> move_history;
 vector<string> black_legal_moves {};
 vector<string> white_legal_moves {};
 int turn_number = 1;
+bool is_player_turn = true;
 bool game_over = false;
+
 
 
 void output_menu_error () {
@@ -173,16 +175,25 @@ char choose_player () {
     return 'B';
 }
 
-void display_turn (char player) {
+void display_turn (char player1) {
     cout << "\n\nTurn #" << turn_number;
-    if (turn_number % 2 == 1 && player == 'B')
+    if (turn_number % 2 == 1 && player1 == 'B') {
+        is_player_turn = true;
         cout << " Player [B]";
-    if (turn_number % 2 == 1 && player == 'W')
+    }
+
+    if (turn_number % 2 == 1 && player1 == 'W') {
+        is_player_turn = true;
         cout << " Player [W]";
-    if (turn_number % 2 == 0 && player == 'B')
-        cout << " Computer [B]";
-    if (turn_number % 2 == 0 && player == 'W')
+    }
+    if (turn_number % 2 == 0 && player1 == 'B') {
+        is_player_turn = false;
         cout << " Computer [W]";
+    }
+    if (turn_number % 2 == 0 && player1 == 'W') {
+        is_player_turn = false;
+        cout << " Computer [B]";
+    }
 }
 
 void get_legal_moves () {
@@ -638,14 +649,14 @@ void get_legal_moves () {
                     // check south
                     if (board[from_rank + 1][from_file].at(0) == '0') {
                         string move_data = to_string(from_rank) + to_string(from_file) + piece + to_string(from_rank + 1) + to_string(from_file) + "00";
-                        cout << move_data << " ";
+                        // cout << move_data << " ";
                         black_legal_moves.push_back(move_data);
                     } else if (board[from_rank + 1][from_file].at(0) == 'W') {
                         string enemy_piece {};
                         enemy_piece.push_back(piece_position.at(2));
                         enemy_piece.push_back(piece_position.at(3));
                         string move_data = to_string(from_rank) + to_string(from_file) + piece + to_string(from_rank + 1) + to_string(from_file) + enemy_piece;
-                        cout << move_data << " ";
+                        // cout << move_data << " ";
                         black_legal_moves.push_back(move_data);
                     }
                 }
@@ -1467,9 +1478,7 @@ void get_legal_moves () {
 //         }    break;
         }
     }
-}
 
-bool check_check () {
     // <<<<=== Check for check ===>>>>
     // From legal moves
     // - find all moves that target enemy Sarrum
@@ -1477,14 +1486,21 @@ bool check_check () {
     // - look at all legal moves, find all moves from all legal moves, check for check
     // - what about moves that put yourself in check??????????(how?)
 
-
-
-    return false;
+    bool white_in_check = false;
+    for (auto move_data : black_legal_moves) {
+        if (move_data.at(5) == 'S') {
+            white_in_check = true;
+        }
+    }
+    bool black_in_check = false;
+    for (auto move_data : white_legal_moves) {
+        if (move_data.at(5) == 'S') {
+            black_in_check = true;
+        }
+    }
 }
 
-
-
-void request_move (const char player) {
+string request_move (const char player) {
     string move_from {};
     string move_to {};
 
@@ -1496,65 +1512,108 @@ void request_move (const char player) {
     string selected_piece {};
     char owner {};
     char piece {};
+    string move_data {};
 
-    //repeat input check for move_from coords
-    do {
-        cout << "\nMove From [Rank][Row]>>> : ";
-        cin >> move_from;
+    if (is_player_turn) {
+        //repeat input check for move_from coords
+        do {
+            cout << "\nMove From [Rank][Row]>>> : ";
+            cin >> move_from;
 
-        from_rank = move_from.at(0) - '1';
-        from_file = move_from.at(1) - '1';
+            from_rank = move_from.at(0) - '1';
+            from_file = move_from.at(1) - '1';
 
-        // cout << move_from << endl;
-        // cout << from_rank << endl;
-        // cout << from_file << endl;
+            // cout << move_from << endl;
+            // cout << from_rank << endl;
+            // cout << from_file << endl;
 
-        bool within_bounds = false;
-        if (from_rank >= 0 && from_file <= board_dimensions - 1) {
-            within_bounds = true;
+            bool within_bounds = false;
+            if (from_rank >= 0 && from_file <= board_dimensions - 1) {
+                within_bounds = true;
 
-            selected_piece = board[from_rank][from_file];
-            owner = selected_piece.at(0);
-            piece = selected_piece.at(1);
+                selected_piece = board[from_rank][from_file];
+                owner = selected_piece.at(0);
+                piece = selected_piece.at(1);
 
-            cout << selected_piece << endl;
-            cout << owner << endl;
-            cout << piece << endl;
+                // cout << selected_piece << endl;
+                // cout << owner << endl;
+                // cout << piece << endl;
 
-            bool is_player_piece = false;
-            if (owner == player)
-                is_player_piece = true;
-            else
-                cout << "Invalid: Enemy Piece";
-            if (within_bounds && is_player_piece)
-                checked = true;
-        }   else cout << "Invalid: Out of Bounds";
-    } while (!checked);
+                bool is_player_piece = false;
+                if (owner == player)
+                    is_player_piece = true;
+                else
+                    cout << "Invalid: Enemy Piece";
+                if (within_bounds && is_player_piece)
+                    checked = true;
+            }   else cout << "Invalid: Out of Bounds";
+        } while (!checked);
 
-    //repeat input check for move_to coords
-    do {
-        cout << "\nMove To [Rank][Row]>>> : ";
-        cin >> move_to;
+        //repeat input check for move_to coords
+        do {
+            cout << "Move To [Rank][Row]>>> : ";
+            cin >> move_to;
 
-        to_rank = move_to.at(0) - '1';
-        to_file = move_to.at(1) - '1';
+            to_rank = move_to.at(0) - '1';
+            to_file = move_to.at(1) - '1';
 
-        // cout << move_to << endl;
-        // cout << to_rank << endl;
-        // cout << to_file << endl;
+            // cout << move_to << endl;
+            // cout << to_rank << endl;
+            // cout << to_file << endl;
 
-        bool within_bounds = false;
-        if (to_rank >= 0 && to_file <= board_dimensions - 1) {
-            within_bounds = true;
+            bool within_bounds = false;
+            if (to_rank >= 0 && to_file <= board_dimensions - 1) {
+                within_bounds = true;
 
-        // cout << selected_piece << endl;
-        // cout << owner << endl;
-        // cout << piece << endl;
+                // cout << selected_piece << endl;
+                // cout << owner << endl;
+                // cout << piece << endl;
 
-        if (within_bounds)
-            checked = true;
-        }   else cout << "Invalid: Out of Bounds";
-    } while (!checked);
+                if (within_bounds)
+                    checked = true;
+            }   else cout << "Invalid: Out of Bounds";
+        } while (!checked);
+        move_data.push_back(from_rank + 48);
+        move_data.push_back(from_file + 48);
+        move_data.push_back(to_rank + 48);
+        move_data.push_back(to_file + 48);
+    } else if (!is_player_turn && player == 'B') {
+        cout << "\nBSize:" + white_legal_moves.size();
+        srand(time(nullptr));
+        int picker = rand() % white_legal_moves.size() - 1;
+        move_data = white_legal_moves[picker];
+    } else if (!is_player_turn && player == 'W') {
+        cout << "\nWSize:" + black_legal_moves.size();
+        srand(time(nullptr));
+        int picker = rand() % black_legal_moves.size() - 1;
+        move_data = black_legal_moves[picker];
+    }
+    return move_data;
+}
+
+void execute_move (string move_data) {
+    // cout << move_data << endl;
+
+    int move_from_rank {0};
+    int move_from_file {0};
+    int move_to_rank {0};
+    int move_to_file {0};
+    string piece {};
+
+    move_from_rank = move_data.at(0) - 48;
+    move_from_file = move_data.at(1) - 48;
+    if (move_data.size() == 4) {
+        move_to_rank = move_data.at(2) - 48;
+        move_to_file = move_data.at(3) - 48;
+    } else if (move_data.size() == 8) {
+        move_to_rank = move_data.at(4) - 48;
+        move_to_file = move_data.at(5) - 48;
+    }
+
+    piece = board.at(move_from_rank).at(move_from_file);
+    // cout << piece << endl;
+    board.at(move_from_rank).at(move_from_file) = '0';
+    board.at(move_to_rank).at(move_to_file) = piece;
 }
 
 int main() {
@@ -1579,12 +1638,14 @@ int main() {
         switch (main_menu_input) {
             case '1': {
                 initialise_game();
-                char player = choose_player();
+                char player1 = choose_player();
                 display_board ();
                 do {
                     get_legal_moves();
-                    display_turn(player);
-                    request_move(player);
+                    display_turn(player1);
+                    string move_data = request_move(player1);
+                    // cout << move_data << endl;
+                    execute_move(move_data);
                     turn_number++;
                     system("cls");
                     display_board();
